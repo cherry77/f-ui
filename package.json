@@ -1,0 +1,21 @@
+{
+  "name": "f-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue-demi": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.5",
+    "@vue/composition-api": "^1.7.0",
+    "typescript": "^3.9.7",
+    "vue": "2.6.14"
+  }
+}
