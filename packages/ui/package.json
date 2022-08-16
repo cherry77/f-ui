@@ -25,5 +25,8 @@
     "vite": "^3.0.7",
     "vite-plugin-vue2": "^2.0.2",
     "vue-template-compiler": "2.6.14"
+  },
+  "dependencies": {
+    "@f-ui/utils": "workspace:^1.0.0"
   }
 }

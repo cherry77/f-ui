@@ -16,7 +16,7 @@ export default defineConfig({
     target: 'modules',
     minify: false,
     rollupOptions: {
-      external: ['vue', 'vue-demi'],
+      external: ['vue'],
       input: ['./../ui/src/index.ts'],
       output: [
         // esm
