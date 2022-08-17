@@ -5,17 +5,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "main": "vue2/lib/index.js",
-  "module": "vue2/es/index.js",
+  "main": "dist/vue2/lib/index.js",
+  "module": "dist/vue2/es/index.js",
   "exports": {
     ".": {
-      "import": "./vue3/es/index.js"
+      "import": "./dist/vue3/es/index.js"
     },
     "./vue2": {
-      "import": "./vue2/es/index.js"
+      "import": "./dist/vue2/es/index.js"
     },
     "./vue3": {
-      "import": "./vue3/es/index.js"
+      "import": "./dist/vue3/es/index.js"
     }
   },
   "scripts": {
