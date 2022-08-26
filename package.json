@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build"
+    "build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build",
+    "build:vue2": "pnpm run -C packages/vue2 build"
   },
   "keywords": [],
   "author": "",

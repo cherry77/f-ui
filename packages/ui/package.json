@@ -4,27 +4,16 @@
   "description": "",
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "main": "dist/vue2/lib/index.js",
-  "module": "dist/vue2/es/index.js",
+  "license": "MIT",
+  "main": "vue2/lib/index.js",
+  "module": "vue2/es/index.js",
   "exports": {
-    ".": {
-      "import": "./dist/vue3/es/index.js"
-    },
     "./vue2": {
-      "import": "./dist/vue2/es/index.js"
+      "import": "./vue2/es/index.js"
     },
     "./vue3": {
-      "import": "./dist/vue3/es/index.js"
+      "import": "./vue3/es/index.js"
     }
-  },
-  "scripts": {
-    "build": "npx vue-demi-switch 2 && vite build"
-  },
-  "devDependencies": {
-    "vite": "^3.0.7",
-    "vite-plugin-vue2": "^2.0.2",
-    "vue-template-compiler": "2.6.14"
   },
   "dependencies": {
     "@f-ui/utils": "workspace:^1.0.0"

@@ -2,9 +2,6 @@ import { defineConfig } from 'vite'
 import { createVuePlugin } from 'vite-plugin-vue2'
 // import dts from 'vite-plugin-dts'
 export default defineConfig({
-  optimizeDeps: {
-    exclude: ['vue-demi'],
-  },
   plugins: [
     createVuePlugin(),
     // dts({
@@ -16,19 +13,19 @@ export default defineConfig({
     target: 'modules',
     minify: false,
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'vue-demi'],
       input: ['./../ui/src/index.ts'],
       output: [
         // esm
         {
           format: 'es',
-          dir: './../ui/dist/vue2/es',
+          dir: './../ui/f-ui/vue2/es',
           entryFileNames: '[name].js'
         },
         // cjs
         {
           format: 'cjs',
-          dir: './../ui/dist/vue2/lib',
+          dir: './../ui/f-ui/vue2/lib',
           entryFileNames: '[name].js'
         },
       ],
