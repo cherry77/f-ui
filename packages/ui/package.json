@@ -1,21 +1,18 @@
 {
-  "name": "f-ui",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "main": "vue2/lib/index.js",
-  "module": "vue2/es/index.js",
-  "exports": {
-    "./vue2": {
-      "import": "./vue2/es/index.js"
-    },
-    "./vue3": {
-      "import": "./vue3/es/index.js"
-    }
-  },
-  "dependencies": {
-    "@f-ui/utils": "workspace:^1.0.0"
-  }
+	"name": "f-ui",
+	"version": "1.0.0",
+	"description": "",
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"main": "vue2/lib/index.js",
+	"module": "vue2/es/index.js",
+	"exports": {
+		"./vue2": {
+			"import": "./vue2/es/index.js"
+		},
+		"./vue3": {
+			"import": "./vue3/es/index.js"
+		}
+	}
 }

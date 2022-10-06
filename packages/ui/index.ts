@@ -4,7 +4,7 @@ import {
   DMenuItem,
   DSimpleMenu,
   DSubMenu,
-} from './src/index'
+} from '../components/index'
 
 const components = [
   DMenu,

@@ -4,8 +4,13 @@ importers:
 
   .:
     specifiers:
+      '@f-ui/components': workspace:^1.0.0
+      '@f-ui/utils': workspace:^1.0.0
       '@types/node': ^18.7.5
       typescript: ^3.9.10
+    dependencies:
+      '@f-ui/components': link:packages/components
+      '@f-ui/utils': link:packages/utils
     devDependencies:
       '@types/node': registry.npmmirror.com/@types/node/18.7.15
       typescript: registry.npmmirror.com/typescript/3.9.10
@@ -50,17 +55,14 @@ importers:
       vite: registry.npmmirror.com/vite/3.0.9
       vue-tsc: registry.npmmirror.com/vue-tsc/0.39.5_typescript@4.7.4
 
+  packages/components:
+    specifiers: {}
+
   packages/ui:
     specifiers:
       '@f-ui/utils': workspace:^1.0.0
     dependencies:
       '@f-ui/utils': link:../utils
-
-  packages/ui/f-ui:
-    specifiers:
-      '@f-ui/utils': workspace:^1.0.0
-    dependencies:
-      '@f-ui/utils': link:../../utils
 
   packages/utils:
     specifiers: {}
