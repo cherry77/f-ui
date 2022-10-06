@@ -6,7 +6,6 @@ import {
   DSubMenu,
 } from './src/index'
 
-import { componentList, register } from './src/register'
 const components = [
   DMenu,
   DMenuItem,
@@ -20,10 +19,8 @@ export const install = (app: App) => {
 
   app[INSTALLED_KEY] = true
   components.forEach((c) => app.use(c))
-  componentList.forEach((c) => app.use(c))
 }
 
 export default {
-  install,
-  register
+  install
 }
