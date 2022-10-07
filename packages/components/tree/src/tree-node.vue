@@ -1,5 +1,7 @@
 <template>
-	<div :class="ns.b()"></div>
+	<div :class="ns.b()">
+		<span :class="ns.e('content')">{{ label }}</span>
+	</div>
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue-demi'

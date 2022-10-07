@@ -1,25 +1,28 @@
 {
-  "name": "f-ui",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build",
-    "build:vue2": "pnpm run -C packages/vue2 build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^18.7.5",
-    "@types/sass": "^1.43.1",
-    "sass": "^1.55.0",
-    "typescript": "^3.9.10"
-  },
-  "dependencies": {
-    "@f-ui/components": "workspace:^1.0.0",
-    "@f-ui/theme-chalk": "workspace:^1.0.0",
-    "@f-ui/utils": "workspace:^1.0.0",
-    "vue-demi": "^0.13.11"
-  }
+	"name": "f-ui",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "pnpm run -C play dev",
+		"build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build",
+		"build:vue2": "pnpm run -C packages/vue2 build"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@types/node": "^18.7.5",
+		"@vitejs/plugin-vue-jsx": "^2.0.1",
+		"sass": "^1.55.0",
+		"typescript": "^3.9.10"
+	},
+	"dependencies": {
+		"@f-ui/components": "workspace:^1.0.0",
+		"@f-ui/theme-chalk": "workspace:^1.0.0",
+		"@f-ui/utils": "workspace:^1.0.0",
+		"@types/lodash-es": "^4.17.6",
+		"lodash-es": "^4.17.21",
+		"vue-demi": "^0.13.11"
+	}
 }
