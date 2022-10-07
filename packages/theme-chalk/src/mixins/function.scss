@@ -1,0 +1,52 @@
+@use 'config';
+
+// BEM support Func
+
+// Maps不能转换为纯CSS。作为变量的值或参数传递给CSS函数将会导致错误。使用inspect($value) 函数以产生输出字符串，用于调试
+@function selectorToString($selector) {
+  $selector: inspect($selector); // 转为字符串: inspect(button) ==> "button"
+  $selector: str-slice(
+    $selector,
+    2,
+    -2
+  ); // 去掉引号 str-slice($string, $start-at, $end-at)，sass从1开始
+  @return $selector;
+}
+
+// 是否有修饰符 --
+@function containsModifier($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, config.$modifier-separator) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 是否有状态前缀 is-
+@function containWhenFlag($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, '.' + config.$state-prefix) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// 是否有伪元素
+@function containPseudoClass($selector) {
+  $selector: selectorToString($selector);
+
+  @if str-index($selector, ':') {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+@function hitAllSpecialNestRule($selector) {
+  @return containsModifier($selector) or containWhenFlag($selector) or
+    containPseudoClass($selector);
+}

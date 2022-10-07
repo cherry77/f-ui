@@ -1,0 +1,175 @@
+@use '../mixins/mixin.scss' as *;
+@use '../common/transition';
+@use '../common/var' as *;
+
+$menu-active-color: $color-primary;
+$menu-bg-color: #fff;
+$menu-hover-bg-color: #ecf5ff;
+$menu-item-height: 56px;
+$menu-base-level-padding: 20px;
+$transition-duration: 0.2s;
+$menu-level-padding: 20px;
+$menu-sub-item-height: calc($menu-item-height - 6px);
+$menu-icon-width: 24px;
+$border-color-light: #ebeef5;
+$box-shadow-light: 0 0 12px rgb(0 0 0 / 12%);
+$border-radius-small: 2px;
+
+@mixin menu-item {
+  display: flex;
+  align-items: center;
+  height: $menu-item-height;
+  line-height: $menu-item-height;
+  font-size: $font-size-base;
+  color: $text-color-primary;
+  padding: 0 $menu-base-level-padding;
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  transition: border-color $transition-duration,
+    background-color $transition-duration, color $transition-duration;
+  box-sizing: border-box;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: $menu-hover-bg-color;
+  }
+
+  span {
+    transition: all $transition-duration;
+  }
+}
+
+@mixin menu-left-icon {
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+@include b(menu) {
+  width: 100%;
+  list-style: none;
+  position: relative;
+  margin: 0;
+  padding-left: 0;
+  background-color: $menu-bg-color;
+  box-sizing: border-box;
+  transition: width $transition-duration;
+
+  @include m(collapsed) {
+    width: calc($menu-icon-width + $menu-base-level-padding * 2);
+
+    > .#{$namespace}-menu-item,
+    > .#{$namespace}-sub-menu > .#{$namespace}-sub-menu__title {
+      [class^='#{$namespace}-icon'] {
+        margin: 0;
+        vertical-align: middle;
+        width: $menu-icon-width;
+        text-align: center;
+      }
+
+      .#{$namespace}-sub-menu__icon-arrow {
+        display: none;
+      }
+
+      > span {
+        height: 0;
+        width: 0;
+        overflow: hidden;
+        visibility: hidden;
+        display: inline-block;
+
+        // display: none;
+      }
+    }
+
+    // > .#{$namespace}-menu-item.is-active i {
+    //   color: inherit;
+    // }
+
+    // .#{$namespace}-menu .#{$namespace}-sub-menu {
+    //   min-width: 200px;
+    // }
+
+    // .#{$namespace}-sub-menu {
+    //   position: relative;
+
+    //   & .#{$namespace}-menu {
+    //     position: absolute;
+    //     margin-left: 5px;
+    //     top: 0;
+    //     left: 100%;
+    //     z-index: 10;
+    //     border: 1px solid $border-color-light;
+    //     border-radius: $border-radius-small;
+    //     box-shadow: $box-shadow-light;
+    //   }
+
+    //   &.is-opened {
+    //     > .#{$namespace}-sub-menu__title .#{$namespace}-sub-menu__icon-arrow {
+    //       transform: none;
+    //     }
+    //   }
+
+    //   &.is-active .#{$namespace}-sub-menu__title {
+    //     color: $menu-active-color;
+    //   }
+    // }
+  }
+  .#{$namespace}-icon {
+    flex-shrink: 0;
+  }
+}
+
+@include b(menu-item) {
+  @include menu-item;
+  & [class^='#{$namespace}-icon'] {
+    @include menu-left-icon;
+  }
+
+  @include when(active) {
+    color: $menu-active-color;
+  }
+}
+
+@include b(sub-menu) {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+
+  @include e(title) {
+    @include menu-item;
+  }
+
+  @include e(icon-arrow) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all $transition-duration;
+    right: $menu-base-level-padding;
+  }
+
+  & .#{$namespace}-menu {
+    border: none;
+  }
+  & .#{$namespace}-menu-item {
+    height: $menu-sub-item-height;
+    line-height: $menu-sub-item-height;
+    min-width: 200px;
+  }
+
+  .#{$namespace}-icon {
+    @include menu-left-icon;
+
+    &.#{$namespace}-sub-menu__icon-more {
+      margin-right: 0 !important;
+    }
+  }
+}

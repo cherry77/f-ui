@@ -1,0 +1,7 @@
+{
+	"name": "@f-ui/theme-chalk",
+	"version": "1.0.0",
+	"private": true,
+	"license": "MIT",
+	"main": "index.ts"
+}

@@ -1,0 +1,26 @@
+// common transition
+@use './../mixins/config' as *;
+
+.slide-enter-active,
+.slide-leave-active {
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.horizontal-collapse-transition {
+  transition: 0.3s width ease-in-out, 0.3s padding-left ease-in-out,
+    0.3s padding-right ease-in-out;
+}
+.#{$namespace}-opacity-transition {
+  transition: opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+
+.#{$namespace}-zoom-in-center-enter-active,
+.#{$namespace}-zoom-in-center-leave-active {
+  transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
+}
+.#{$namespace}-zoom-in-center-enter-from,
+.#{$namespace}-zoom-in-center-leave-active {
+  opacity: 0;
+  transform: scaleX(0);
+}
