@@ -1,5 +1,5 @@
-import type { PropType, ExtractPropTypes } from 'vue-demi'
-import { TreeNode, TreeNodeKey } from './types'
+import type { PropType, ExtractPropTypes, Ref, InjectionKey } from 'vue-demi'
+import { InnerTreeNode, TreeNode, TreeNodeKey } from './types'
 import { CHECK_STRATEGY } from './const'
 
 export const treeProps = {
@@ -132,3 +132,24 @@ export const treeNodeProps = {
 	},
 } as const
 export type TreeNodeProps = Partial<ExtractPropTypes<typeof treeNodeProps>>
+
+export interface TreeInst {
+	props: TreeProps
+	selectNode: (value: TreeNodeKey, event: Event) => void
+	expandNode: (value: TreeNodeKey, event: Event) => void
+	checkNode: (value: TreeNodeKey, event: Event) => void
+	hasSelected: (value: TreeNodeKey) => boolean
+	nodeList: Map<TreeNodeKey, InnerTreeNode>
+	handleDragstart: (value: TreeNodeKey, event: DragEvent) => void
+	handleDragenter: (value: TreeNodeKey, event: DragEvent) => void
+	handleDragover: (value: TreeNodeKey, event: DragEvent) => void
+	handleDragleave: (value: TreeNodeKey, event: DragEvent) => void
+	handleDragend: (value: TreeNodeKey, event: DragEvent) => void
+	handleDrop: (value: TreeNodeKey, event: DragEvent) => void
+	dragOverInfo: Ref<{
+		node: InnerTreeNode
+		// position: DropPosition
+	}>
+}
+
+export const TREE_PROVIDE_KEY: InjectionKey<TreeInst> = Symbol('FTree')

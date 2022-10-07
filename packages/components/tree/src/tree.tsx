@@ -1,7 +1,7 @@
-import { defineComponent, VNodeChild } from 'vue-demi'
-import TreeNode from './tree-node.vue'
+import { defineComponent, provide, VNodeChild } from 'vue-demi'
+import TreeNode from './tree-node'
 import useData from './hooks/use-data'
-import { treeProps } from './props'
+import { treeProps, TREE_PROVIDE_KEY } from './props'
 import { TreeNodeKey } from './types'
 import { isFunction, isString } from 'lodash-es'
 import { useNamespace } from '../../shared'
@@ -14,6 +14,24 @@ export default defineComponent({
       props,
       emit,
     })
+    console.log('nodeList=========', nodeList)
+
+    provide(TREE_PROVIDE_KEY, {
+      props,
+      nodeList,
+      // selectNode,
+      // expandNode,
+      // checkNode,
+      // hasSelected,
+      // handleDragstart,
+      // handleDragenter,
+      // handleDragover,
+      // handleDragleave,
+      // handleDragend,
+      // handleDrop,
+      // dragOverInfo,
+    });
+
     const renderNode = (value: TreeNodeKey) => {
       const node = nodeList.get(value)
       const itemSlots: { [key: string]: () => VNodeChild | string } = {}

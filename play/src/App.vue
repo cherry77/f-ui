@@ -1,5 +1,5 @@
 <template>
-	<Tree :data="treeData" />
+	<Tree :data="treeData" checkable />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
