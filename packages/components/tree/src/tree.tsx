@@ -5,6 +5,9 @@ import { treeProps, TREE_PROVIDE_KEY } from './props'
 import { TreeNodeKey } from './types'
 import { isFunction, isString } from 'lodash-es'
 import { useNamespace } from '../../shared'
+import useExpand from './hooks/use-expand'
+import useState from './hooks/use-state'
+import useCurrentData from './hooks/use-current-data'
 export default defineComponent({
   name: 'FTree',
   props: treeProps,
@@ -14,13 +17,45 @@ export default defineComponent({
       props,
       emit,
     })
+
+    const {
+      currentExpandedKeys,
+      updateExpandedKeys,
+      // currentCheckedKeys,
+      // updateCheckedKeys,
+      // currentSelectedKeys,
+      // updateSelectedKeys,
+      // hasSelected,
+    } = useState({ props, emit });
+
     console.log('nodeList=========', nodeList)
+
+    const { expandNode, expandingNode } = useExpand({
+      allKeys,
+      // isSearchingRef,
+      // filteredExpandedKeys,
+      nodeList,
+      currentExpandedKeys,
+      updateExpandedKeys,
+      props,
+      emit,
+    });
+
+    const { currentData } = useCurrentData({
+      // isSearchingRef,
+      // filteredExpandedKeys,
+      currentExpandedKeys,
+      // filteredKeys,
+      allKeys,
+      expandingNode,
+      nodeList,
+    });
 
     provide(TREE_PROVIDE_KEY, {
       props,
       nodeList,
       // selectNode,
-      // expandNode,
+      expandNode,
       // checkNode,
       // hasSelected,
       // handleDragstart,
@@ -34,6 +69,8 @@ export default defineComponent({
 
     const renderNode = (value: TreeNodeKey) => {
       const node = nodeList.get(value)
+      if (!node) return null
+
       const itemSlots: { [key: string]: () => VNodeChild | string } = {}
       if (isFunction(node.prefix)) {
         itemSlots.prefix = node.prefix
@@ -65,7 +102,7 @@ export default defineComponent({
 
     return () => (
       <div class={ns.b()}>
-        {allKeys.value.map((value) => renderNode(value))}
+        {currentData.value.map((value) => renderNode(value))}
       </div>
     )
   },

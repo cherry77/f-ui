@@ -16,10 +16,11 @@
 		"@vitejs/plugin-vue-jsx": "^2.0.1",
 		"sass": "^1.55.0",
 		"typescript": "^3.9.10",
-    "vue": "^3.2.37"
+		"vue": "^3.2.37"
 	},
 	"dependencies": {
 		"@f-ui/components": "workspace:^1.0.0",
+		"@f-ui/icons": "workspace:^1.0.0",
 		"@f-ui/theme-chalk": "workspace:^1.0.0",
 		"@f-ui/utils": "workspace:^1.0.0",
 		"@types/lodash-es": "^4.17.6",

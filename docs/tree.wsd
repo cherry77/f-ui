@@ -22,8 +22,8 @@ entity Tree{
   + draggable: Boolea 
 
   .. Events ..
-  + check: ({ checkedKeys, node, event, checked }) => void
-  + expand: ({ expandedKeys, node, event, expanded }) => void
+  + check: ({ checkedKeys, node, event, isChecked }) => void
+  + expand: ({ expandedKeys, node, event, isExpanded }) => void
   + select: ({ selectedKeys, node, event, selected }) => void
 
   .. Methods ..

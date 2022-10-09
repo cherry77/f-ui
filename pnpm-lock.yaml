@@ -5,6 +5,7 @@ importers:
   .:
     specifiers:
       '@f-ui/components': workspace:^1.0.0
+      '@f-ui/icons': workspace:^1.0.0
       '@f-ui/theme-chalk': workspace:^1.0.0
       '@f-ui/utils': workspace:^1.0.0
       '@types/lodash-es': ^4.17.6
@@ -17,6 +18,7 @@ importers:
       vue-demi: ^0.13.11
     dependencies:
       '@f-ui/components': link:packages/components
+      '@f-ui/icons': link:packages/icons
       '@f-ui/theme-chalk': link:packages/theme-chalk
       '@f-ui/utils': link:packages/utils
       '@types/lodash-es': registry.npmmirror.com/@types/lodash-es/4.17.6
