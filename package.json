@@ -15,7 +15,8 @@
 		"@types/node": "^18.7.5",
 		"@vitejs/plugin-vue-jsx": "^2.0.1",
 		"sass": "^1.55.0",
-		"typescript": "^3.9.10"
+		"typescript": "^3.9.10",
+    "vue": "^3.2.37"
 	},
 	"dependencies": {
 		"@f-ui/components": "workspace:^1.0.0",
