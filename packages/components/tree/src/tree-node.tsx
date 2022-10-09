@@ -8,7 +8,7 @@ export default defineComponent({
   name: 'FTreeNode',
   props: treeNodeProps,
   setup(props, { emit }) {
-    const ns = useNamespace('tree-node')
+    const ns = useNamespace('tree')
     const {
       root,
       disabled,
@@ -23,7 +23,7 @@ export default defineComponent({
     } = useTreeNode(props)
 
     const classes = computed(() => [
-      ns.b(),
+      ns.e('node'),
       disabled.value && ns.m('disabled'),
       selected.value && ns.m('selected'),
     ])
@@ -49,7 +49,7 @@ export default defineComponent({
         return <span class={ns.e('node-indent')}></span>
       }
       return (
-        <span class={ns.e('toggle')} onClick={handleToggle}>
+        <span class={ns.e('node-toggle')} onClick={handleToggle}>
           <FIcon class={isExpanded.value ? 'f-icon-arrow_down' : 'f-icon-arrow_right'}></FIcon>
         </span>
       )

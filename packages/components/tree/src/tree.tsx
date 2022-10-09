@@ -1,4 +1,4 @@
-import { defineComponent, provide, VNodeChild } from 'vue-demi'
+import { defineComponent, provide, VNodeChild, TransitionGroup } from 'vue-demi'
 import TreeNode from './tree-node'
 import useData from './hooks/use-data'
 import { treeProps, TREE_PROVIDE_KEY } from './props'
@@ -85,6 +85,7 @@ export default defineComponent({
         itemSlots.suffix = () => node.suffix as string
       }
       return (
+
         <TreeNode
           key={node.uid}
           level={node.level}
@@ -102,7 +103,9 @@ export default defineComponent({
 
     return () => (
       <div class={ns.b()}>
-        {currentData.value.map((value) => renderNode(value))}
+        <TransitionGroup name={ns.m('list')}>
+          {currentData.value.map(renderNode)}
+        </TransitionGroup>
       </div>
     )
   },

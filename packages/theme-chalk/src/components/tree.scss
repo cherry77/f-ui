@@ -15,19 +15,20 @@ $highlight-color: #5e7ce0;
     line-height: 1.5;
     white-space: nowrap;
 
+    @include e(node-toggle) {
+      // display: inline-block;
+      // vertical-align: middle;
+      user-select: none;
+      font-size: $icon-size;
+      height: 16px;
+      width: 16px;
+      line-height: 16px;
+      cursor: pointer;
+    }
+
     @include e(node-content) {
       display: inline-flex;
       align-items: center;
-
-      @include e(node-folder) {
-        display: inline-block;
-        vertical-align: middle;
-        user-select: none;
-        font-size: $icon-size;
-        height: 16px;
-        width: 16px;
-        line-height: 16px;
-      }
 
       &:not(.disabled) {
         cursor: pointer;
@@ -58,6 +59,7 @@ $highlight-color: #5e7ce0;
   }
 
   @include m(list) {
+
     &-enter-active,
     &-leave-active {
       transition: opacity 0.3s cubic-bezier(0.5, 0.05, 0.5, 0.95),
