@@ -23,7 +23,6 @@ export default ({
   const currentData = ref<TreeNodeKey[]>([]);
 
   const computeCurrentData = () => {
-    console.log(1)
     const res: TreeNodeKey[] = [];
     // const expandedKeys = isSearchingRef.value
     //   ? filteredExpandedKeys.value

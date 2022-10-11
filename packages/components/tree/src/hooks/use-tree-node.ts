@@ -14,7 +14,7 @@ export default (props: TreeNodeProps) => {
 
   const isChecked = computed(() => node.isChecked.value)
 
-  const indeterminate = computed(() => node.indeterminate.value)
+  const isIndeterminate = computed(() => node.isIndeterminate.value)
 
   const disabled = computed(() => props.disabled)
 
@@ -32,7 +32,7 @@ export default (props: TreeNodeProps) => {
     isExpanded,
     selected,
     isChecked,
-    indeterminate,
+    isIndeterminate,
     selectable,
     checkable,
     // isFirst,

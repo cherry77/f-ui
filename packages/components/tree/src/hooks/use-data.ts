@@ -105,7 +105,7 @@ export default ({ props, emit }: { props: TreeProps; emit: any }) => {
       // 如果不存在，只需要将三个字段设置为响应式即可
       copy = Object.assign({}, newItem)
       copy.isExpanded = ref(false)
-      copy.indeterminate = ref(false)
+      copy.isIndeterminate = ref(false)
       copy.isChecked = ref(false)
     }
     return copy

@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "strictNullChecks": false,
+        "jsx": "preserve",
+        "module": "ES6",
+        "moduleResolution": "Node",
+        "declaration": true,
+        "declarationDir": "./types",
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "composite": true,
+        "target": "ES6",
+        "types": [
+            "jest"
+        ],
+        "lib": [
+            "ESNext",
+            "DOM"
+        ]
+    },
+    "include": [
+        "global.d.ts",
+        "packages/components/**/*.ts",
+        "packages/components/**/*.tsx",
+        "packages/components/**/*.vue"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

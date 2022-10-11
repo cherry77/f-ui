@@ -8,6 +8,7 @@ import { useNamespace } from '../../shared'
 import useExpand from './hooks/use-expand'
 import useState from './hooks/use-state'
 import useCurrentData from './hooks/use-current-data'
+import useCheck from './hooks/use-check'
 export default defineComponent({
   name: 'FTree',
   props: treeProps,
@@ -21,8 +22,8 @@ export default defineComponent({
     const {
       currentExpandedKeys,
       updateExpandedKeys,
-      // currentCheckedKeys,
-      // updateCheckedKeys,
+      currentCheckedKeys,
+      updateCheckedKeys,
       // currentSelectedKeys,
       // updateSelectedKeys,
       // hasSelected,
@@ -37,6 +38,15 @@ export default defineComponent({
       nodeList,
       currentExpandedKeys,
       updateExpandedKeys,
+      props,
+      emit,
+    });
+
+    const { checkNode } = useCheck({
+      allKeys,
+      nodeList,
+      currentCheckedKeys,
+      updateCheckedKeys,
       props,
       emit,
     });
@@ -56,7 +66,7 @@ export default defineComponent({
       nodeList,
       // selectNode,
       expandNode,
-      // checkNode,
+      checkNode,
       // hasSelected,
       // handleDragstart,
       // handleDragenter,

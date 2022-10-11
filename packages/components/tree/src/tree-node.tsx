@@ -17,7 +17,7 @@ export default defineComponent({
       isExpanded,
       selected,
       isChecked,
-      indeterminate,
+      isIndeterminate,
       // isInline,
       // isFirst,
     } = useTreeNode(props)
@@ -59,7 +59,7 @@ export default defineComponent({
       if (!checkable.value) return null
       return (
         <span class={ns.e('checkbox')}>
-          <input type="checkbox" indeterminate={indeterminate.value} checked={isChecked.value} disabled={disabled.value} onClick={handleClickCheckbox}></input>
+          <input type="checkbox" indeterminate={isIndeterminate.value} checked={isChecked.value} disabled={disabled.value} onClick={handleClickCheckbox}></input>
         </span>
       )
     }
