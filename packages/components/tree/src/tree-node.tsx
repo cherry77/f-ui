@@ -46,7 +46,7 @@ export default defineComponent({
 
     const renderToggle = () => {
       if (props.isLeaf) {
-        return <span class={ns.e('node-indent')}></span>
+        return <span class={ns.e('node-toggle')}></span>
       }
       return (
         <span class={ns.e('node-toggle')} onClick={handleToggle}>

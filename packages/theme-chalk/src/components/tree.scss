@@ -16,7 +16,7 @@ $highlight-color: #5e7ce0;
     white-space: nowrap;
 
     @include e(node-toggle) {
-      // display: inline-block;
+      display: inline-block;
       // vertical-align: middle;
       user-select: none;
       font-size: $icon-size;
