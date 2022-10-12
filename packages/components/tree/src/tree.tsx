@@ -9,6 +9,7 @@ import useExpand from './hooks/use-expand'
 import useState from './hooks/use-state'
 import useCurrentData from './hooks/use-current-data'
 import useCheck from './hooks/use-check'
+import useSelect from './hooks/use-select'
 export default defineComponent({
   name: 'FTree',
   props: treeProps,
@@ -24,9 +25,9 @@ export default defineComponent({
       updateExpandedKeys,
       currentCheckedKeys,
       updateCheckedKeys,
-      // currentSelectedKeys,
-      // updateSelectedKeys,
-      // hasSelected,
+      currentSelectedKeys,
+      updateSelectedKeys,
+      hasSelected,
     } = useState({ props, emit });
 
     console.log('nodeList=========', nodeList)
@@ -38,6 +39,14 @@ export default defineComponent({
       nodeList,
       currentExpandedKeys,
       updateExpandedKeys,
+      props,
+      emit,
+    });
+
+    const { selectNode } = useSelect({
+      nodeList,
+      currentSelectedKeys,
+      updateSelectedKeys,
       props,
       emit,
     });
@@ -64,10 +73,10 @@ export default defineComponent({
     provide(TREE_PROVIDE_KEY, {
       props,
       nodeList,
-      // selectNode,
+      selectNode,
       expandNode,
       checkNode,
-      // hasSelected,
+      hasSelected,
       // handleDragstart,
       // handleDragenter,
       // handleDragover,
@@ -95,7 +104,6 @@ export default defineComponent({
         itemSlots.suffix = () => node.suffix as string
       }
       return (
-
         <TreeNode
           key={node.uid}
           level={node.level}

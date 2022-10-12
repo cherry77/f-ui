@@ -7,10 +7,9 @@ export default (props: TreeNodeProps) => {
 
   const node = root.nodeList.get(props.value)
 
-  const isExpanded = computed(() => node.isExpanded?.value)
+  const isExpanded = computed(() => node.isExpanded.value)
 
-  // TODO
-  const selected = computed(() => true)
+  const isSelected = computed(() => root.hasSelected(node.value))
 
   const isChecked = computed(() => node.isChecked.value)
 
@@ -30,7 +29,7 @@ export default (props: TreeNodeProps) => {
     root,
     disabled,
     isExpanded,
-    selected,
+    isSelected,
     isChecked,
     isIndeterminate,
     selectable,

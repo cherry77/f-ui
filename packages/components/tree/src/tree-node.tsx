@@ -15,7 +15,7 @@ export default defineComponent({
       selectable,
       checkable,
       isExpanded,
-      selected,
+      isSelected,
       isChecked,
       isIndeterminate,
       // isInline,
@@ -24,8 +24,8 @@ export default defineComponent({
 
     const classes = computed(() => [
       ns.e('node'),
-      disabled.value && ns.m('disabled'),
-      selected.value && ns.m('selected'),
+      disabled.value && ns.em('node', 'disabled'),
+      isSelected.value && ns.em('node', 'selected'),
     ])
 
     const style = computed(() => ({
@@ -35,6 +35,22 @@ export default defineComponent({
     const handleToggle = (event: Event) => {
       if (disabled.value) return
       return root?.expandNode(props.value, event)
+    }
+
+    const handleClickContent = (event: Event) => {
+      if (disabled.value) return;
+      // 默认 select 行为
+      if (selectable.value) {
+        return root.selectNode(props.value, event);
+      }
+      // 再 check 行为
+      if (checkable.value) {
+        return root.checkNode(props.value, event);
+      }
+      // 再展开行为
+      if (!props.isLeaf) {
+        handleToggle(event);
+      }
     }
 
     const handleClickCheckbox = (event: Event) => {
@@ -68,7 +84,7 @@ export default defineComponent({
       <div class={classes.value} style={style.value}>
         {renderToggle()}
         {renderCheckbox()}
-        <span class={ns.e('content')}>{props.label}</span>
+        <span class={ns.e('content')} onClick={handleClickContent}>{props.label}</span>
       </div>
     )
   }

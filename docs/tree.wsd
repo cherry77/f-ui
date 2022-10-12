@@ -24,7 +24,7 @@ entity Tree{
   .. Events ..
   + check: ({ checkedKeys, node, event, isChecked }) => void
   + expand: ({ expandedKeys, node, event, isExpanded }) => void
-  + select: ({ selectedKeys, node, event, selected }) => void
+  + select: ({ selectedKeys, node, event, isSelected }) => void
 
   .. Methods ..
   + filter: (filterText) => void

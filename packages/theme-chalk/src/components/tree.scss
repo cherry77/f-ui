@@ -5,6 +5,7 @@
 $node-height: 30px;
 $node-text-color: #575d6c;
 $icon-size: 16px;
+$hover-color-light: #f5f8ff;
 $highlight-color: #5e7ce0;
 
 @include b(tree) {
@@ -14,6 +15,7 @@ $highlight-color: #5e7ce0;
     color: $node-text-color;
     line-height: 1.5;
     white-space: nowrap;
+    cursor: pointer;
 
     @include e(node-toggle) {
       display: inline-block;
@@ -26,36 +28,41 @@ $highlight-color: #5e7ce0;
       cursor: pointer;
     }
 
-    @include e(node-content) {
-      display: inline-flex;
-      align-items: center;
-
-      &:not(.disabled) {
-        cursor: pointer;
-      }
+    @include m(selected) {
+      color: $color-primary;
+      background-color: $hover-color-light;
     }
 
-    .active {
-      background-color: var(--devui-list-item-selected-bg, #f2f5fc);
-      text-decoration: none;
-      border-color: transparent;
-    }
+    // @include e(node-content) {
+    //   display: inline-flex;
+    //   align-items: center;
 
-    @include e(node-title) {
-      margin-left: 5px;
-      display: inline-block;
-      border: 1px dashed transparent;
-      max-width: 100%;
+    //   &:not(.disabled) {
+    //     cursor: pointer;
+    //   }
+    // }
 
-      &:not(.disabled) {
-        cursor: pointer;
-      }
-    }
+    // .active {
+    //   background-color: var(--devui-list-item-isSelected-bg, #f2f5fc);
+    //   text-decoration: none;
+    //   border-color: transparent;
+    // }
 
-    @include e(match-highlight) {
-      font-weight: bold;
-      color: $highlight-color;
-    }
+    // @include e(node-title) {
+    //   margin-left: 5px;
+    //   display: inline-block;
+    //   border: 1px dashed transparent;
+    //   max-width: 100%;
+
+    //   &:not(.disabled) {
+    //     cursor: pointer;
+    //   }
+    // }
+
+    // @include e(match-highlight) {
+    //   font-weight: bold;
+    //   color: $highlight-color;
+    // }
   }
 
   @include m(list) {
