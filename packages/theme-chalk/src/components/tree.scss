@@ -33,6 +33,27 @@ $highlight-color: #5e7ce0;
       background-color: $hover-color-light;
     }
 
+    @include m(dragover) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: $color-primary;
+
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        left: -5px;
+        top: -2px;
+        height: 4px;
+        width: 4px;
+        border-radius: 50%;
+        border: 1px solid $color-primary;
+        z-index: 1;
+      }
+    }
+
     // @include e(node-content) {
     //   display: inline-flex;
     //   align-items: center;

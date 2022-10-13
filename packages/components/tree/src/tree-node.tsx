@@ -1,4 +1,4 @@
-import { computed, defineComponent, render } from 'vue-demi'
+import { computed, CSSProperties, defineComponent, render } from 'vue-demi'
 import { FIcon } from '@f-ui/components'
 import { useNamespace } from '../../shared'
 import { INDENT } from './const'
@@ -80,8 +80,46 @@ export default defineComponent({
       )
     }
 
+    const renderDrag = () => {
+      const dragOverInfo = root.dragOverInfo.value;
+      if (dragOverInfo?.node.value === props.value) {
+        const style: CSSProperties = {};
+        if (dragOverInfo?.position === 'before') {
+          style['top'] = '2px';
+        } else if (dragOverInfo?.position === 'after') {
+          style['bottom'] = '2px';
+        }
+        style['left'] = `${props.level * INDENT + 9}px`;
+        return <div class={ns.em('node', 'dragover')} style={style} />;
+      }
+      return null
+    }
+
     return () => (
-      <div class={classes.value} style={style.value}>
+      <div
+        class={classes.value}
+        style={style.value}
+        data-value={props.value}
+        draggable={props.draggable}
+        onDragstart={(event: DragEvent) => {
+          root.handleDragstart(props.value, event);
+        }}
+        onDragenter={(event: DragEvent) => {
+          root.handleDragenter(props.value, event);
+        }}
+        onDragover={(event: DragEvent) => {
+          root.handleDragover(props.value, event);
+        }}
+        onDragleave={(event: DragEvent) => {
+          root.handleDragleave(props.value, event);
+        }}
+        onDragend={(event: DragEvent) => {
+          root.handleDragend(props.value, event);
+        }}
+        onDrop={(event: DragEvent) => {
+          root.handleDrop(props.value, event);
+        }}>
+        {renderDrag()}
         {renderToggle()}
         {renderCheckbox()}
         <span class={ns.e('content')} onClick={handleClickContent}>{props.label}</span>

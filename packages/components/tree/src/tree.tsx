@@ -10,6 +10,7 @@ import useState from './hooks/use-state'
 import useCurrentData from './hooks/use-current-data'
 import useCheck from './hooks/use-check'
 import useSelect from './hooks/use-select'
+import useDrag from './hooks/use-drag'
 export default defineComponent({
   name: 'FTree',
   props: treeProps,
@@ -70,6 +71,16 @@ export default defineComponent({
       nodeList,
     });
 
+    const {
+      handleDragstart,
+      handleDragenter,
+      handleDragover,
+      handleDragleave,
+      handleDragend,
+      handleDrop,
+      dragOverInfo,
+    } = useDrag({ nodeList, emit, expandNode, ns });
+
     provide(TREE_PROVIDE_KEY, {
       props,
       nodeList,
@@ -77,13 +88,13 @@ export default defineComponent({
       expandNode,
       checkNode,
       hasSelected,
-      // handleDragstart,
-      // handleDragenter,
-      // handleDragover,
-      // handleDragleave,
-      // handleDragend,
-      // handleDrop,
-      // dragOverInfo,
+      handleDragstart,
+      handleDragenter,
+      handleDragover,
+      handleDragleave,
+      handleDragend,
+      handleDrop,
+      dragOverInfo,
     });
 
     const renderNode = (value: TreeNodeKey) => {

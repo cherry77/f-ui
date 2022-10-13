@@ -25,3 +25,5 @@ export interface InnerTreeNode extends TreeNode {
   isChecked?: Ref<boolean>
   indeterminate?: Ref<boolean>
 }
+
+export type DropPosition = 'before' | 'inside' | 'after';
