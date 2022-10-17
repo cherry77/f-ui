@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "pnpm run -C play dev",
 		"build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build",
-		"build:vue2": "pnpm run -C packages/vue2 build"
+		"build:vue2": "pnpm run -C packages/vue2 build",
+		"storybook": "pnpm run -C storybook start"
 	},
 	"keywords": [],
 	"author": "",
@@ -15,6 +16,7 @@
 		"@types/node": "^18.7.5",
 		"@vitejs/plugin-vue-jsx": "^2.0.1",
 		"sass": "^1.55.0",
+		"sass-loader": "^13.1.0",
 		"typescript": "^3.9.10",
 		"vue": "^3.2.37"
 	},

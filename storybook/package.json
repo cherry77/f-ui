@@ -1,24 +1,28 @@
 {
   "name": "@f-ui/storybook",
   "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "main": "index.js",
-  "license": "MIT",
+  "scripts": {
+    "start": "start-storybook -p 6006",
+    "build": "build-storybook"
+  },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
+    "@babel/core": "^7.19.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-interactions": "^6.5.10",
     "@storybook/addon-links": "^6.5.10",
     "@storybook/builder-webpack5": "^6.5.10",
     "@storybook/manager-webpack5": "^6.5.10",
+    "@storybook/preset-scss": "1.0.3",
     "@storybook/testing-library": "^0.0.13",
     "@storybook/vue3": "^6.5.10",
+    "@vue/babel-plugin-jsx": "^1.1.1",
     "babel-loader": "^8.2.5",
-    "vue": "^3.2.37",
     "vue-loader": "^16.8.3"
-  },
-  "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
   }
 }
