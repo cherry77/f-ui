@@ -1,9 +1,13 @@
 <template>
-  <Tree :data="data" checkable cascade draggable @drop="onDrop" />
+  <input v-model="filterText" placeholder="请输入" />
+  <button @click="search">搜索</button>
+  <Tree ref="treeRef" :data="data" checkable cascade draggable @drop="onDrop" :filterMethod="filterMethod" />
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
 import Tree from '@f-ui/components/tree'
+
+const treeRef = ref()
 const data = ref([
   ...Array.from({ length: 3 }).map((_, index) => ({
     value: `key_${index}`,
@@ -26,6 +30,14 @@ const data = ref([
         : undefined,
   })),
 ])
+
+const filterText = ref('')
+const search = () => {
+  treeRef.value.filter(filterText.value);
+}
+const filterMethod = (value, node) => {
+  return node.label.indexOf(value) !== -1
+}
 
 function findSiblingsAndIndex(node, nodes): any {
   if (!node || !nodes) return [null, null];

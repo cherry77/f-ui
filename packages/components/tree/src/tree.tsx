@@ -11,10 +11,11 @@ import useCurrentData from './hooks/use-current-data'
 import useCheck from './hooks/use-check'
 import useSelect from './hooks/use-select'
 import useDrag from './hooks/use-drag'
+import useFilter from './hooks/use-filter'
 export default defineComponent({
   name: 'FTree',
   props: treeProps,
-  setup(props, { emit }) {
+  setup(props, { emit, expose }) {
     const ns = useNamespace('tree')
     const { nodeList, allKeys } = useData({
       props,
@@ -31,12 +32,13 @@ export default defineComponent({
       hasSelected,
     } = useState({ props, emit });
 
-    console.log('nodeList=========', nodeList)
+    const { filter, filteredExpandedKeys, filteredKeys, isSearchingRef } =
+      useFilter(props, allKeys, nodeList);
 
     const { expandNode, expandingNode } = useExpand({
       allKeys,
-      // isSearchingRef,
-      // filteredExpandedKeys,
+      isSearchingRef,
+      filteredExpandedKeys,
       nodeList,
       currentExpandedKeys,
       updateExpandedKeys,
@@ -62,10 +64,10 @@ export default defineComponent({
     });
 
     const { currentData } = useCurrentData({
-      // isSearchingRef,
-      // filteredExpandedKeys,
+      isSearchingRef,
+      filteredExpandedKeys,
       currentExpandedKeys,
-      // filteredKeys,
+      filteredKeys,
       allKeys,
       expandingNode,
       nodeList,
@@ -80,6 +82,15 @@ export default defineComponent({
       handleDrop,
       dragOverInfo,
     } = useDrag({ nodeList, emit, expandNode, ns });
+
+    if (expose) {
+      expose({
+        selectNode,
+        expandNode,
+        checkNode,
+        filter,
+      });
+    }
 
     provide(TREE_PROVIDE_KEY, {
       props,
