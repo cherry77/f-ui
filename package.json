@@ -1,25 +1,26 @@
 {
-	"name": "f-ui",
-	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
-	"scripts": {
-		"dev": "pnpm run -C play dev",
-		"build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build",
-		"build:vue2": "pnpm run -C packages/vue2 build",
-		"storybook": "pnpm run -C storybook start"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"devDependencies": {
-		"@types/node": "^18.7.5",
-		"sass": "^1.55.0",
-		"sass-loader": "^13.1.0",
-		"typescript": "^3.9.10"
-	},
-	"dependencies": {
-		"@types/lodash-es": "^4.17.6",
-		"lodash-es": "^4.17.21"
-	}
+  "name": "f-ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm run -C play dev",
+    "build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build",
+    "build:vue2": "pnpm run -C packages/vue2 build",
+    "storybook": "pnpm run -C storybook start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.7.5",
+    "nx": "17.2.8",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "typescript": "^3.9.10"
+  },
+  "dependencies": {
+    "@types/lodash-es": "^4.17.6",
+    "lodash-es": "^4.17.21"
+  }
 }
