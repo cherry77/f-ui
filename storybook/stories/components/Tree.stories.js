@@ -1,5 +1,4 @@
 import '@f-ui/theme-chalk/src/components/tree.scss'
-import '@f-ui/icons/font/iconfont.css'
 import { reactive, ref } from 'vue-demi'
 import FTree from '@f-ui/components/tree'
 

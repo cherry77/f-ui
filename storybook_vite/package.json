@@ -4,13 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+		"@f-ui/vue3": "workspace:*",
+		"@f-ui/theme-chalk": "workspace:*"
+  },
   "devDependencies": {
     "@storybook/addon-essentials": "7.5.2",
     "@storybook/addon-interactions": "7.5.2",

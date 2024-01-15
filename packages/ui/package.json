@@ -14,5 +14,9 @@
 		"./vue3": {
 			"import": "./vue3/es/index.js"
 		}
+	},
+	"dependencies": {
+		"@f-ui/components": "workspace:*",
+		"@f-ui/icons": "workspace:*"
 	}
 }

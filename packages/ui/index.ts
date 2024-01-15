@@ -4,7 +4,7 @@ import {
   DMenuItem,
   DSimpleMenu,
   DSubMenu,
-} from '../components/index'
+} from '@f-ui/components'
 
 const components = [
   DMenu,

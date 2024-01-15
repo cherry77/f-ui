@@ -3,5 +3,9 @@
 	"version": "1.0.0",
 	"private": true,
 	"license": "MIT",
-	"main": "index.ts"
+	"main": "index.ts",
+	"dependencies": {
+		"@f-ui/utils": "workspace:^1.0.0",
+		"@f-ui/components": "workspace:^1.0.0"
+	}
 }
