@@ -13,6 +13,6 @@ import { computedAsync } from '@vueuse/core'
 //   return res
 // })
 // const msg = computed(() => 'Hello World')
-const msg = computedAsync(() => Promise.resolve('Hello World'))
+const msg = computed(() => Promise.resolve('Hello World'))
 </script>
 <style scoped></style>

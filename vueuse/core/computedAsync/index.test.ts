@@ -162,121 +162,130 @@ describe('computedAsync', () => {
 		expect(double.value).toBe(8)
 	})
 
-	// it('evaluating works', async () => {
-	//   const evaluating = ref(false)
+	it('evaluating works', async () => {
+		const evaluating = ref(false)
 
-	//   const data = computedAsync(
-	//     () => new Promise(resolve => setTimeout(() => resolve('data'), 0)),
-	//     undefined,
-	//     evaluating,
-	//   )
+		const data = computedAsync(
+			() =>
+				new Promise((resolve) => setTimeout(() => resolve('data'), 0)),
+			undefined,
+			evaluating
+		)
 
-	//   await nextTick()
-	//   expect(data.value).toBeUndefined()
-	//   expect(evaluating.value).toBe(true)
+		await nextTick()
+		expect(data.value).toBeUndefined()
+		expect(evaluating.value).toBe(true)
 
-	//   await new Promise(resolve => setTimeout(resolve, 0))
+		await new Promise((resolve) => setTimeout(resolve, 0))
 
-	//   expect(evaluating.value).toBe(false)
-	//   expect(data.value).toBe('data')
-	// })
+		expect(evaluating.value).toBe(false)
+		expect(data.value).toBe('data')
+	})
 
-	// it('triggers', async () => {
-	//   const counter = ref(1)
-	//   const double = computedAsync(() => {
-	//     const result = counter.value * 2
-	//     return Promise.resolve(result)
-	//   })
-	//   const other = computed(() => {
-	//     return double.value + 1
-	//   })
+	it('triggers', async () => {
+		const counter = ref(1)
+		const double = computedAsync(() => {
+			const result = counter.value * 2
+			return Promise.resolve(result)
+		})
+		const other = computed(() => {
+			return double.value + 1
+		})
 
-	//   expect(double.value).toBeUndefined()
+		expect(double.value).toBeUndefined()
 
-	//   await nextTick()
-	//   await nextTick()
+		await nextTick()
+		await nextTick()
 
-	//   expect(double.value).toBe(2)
+		expect(double.value).toBe(2)
 
-	//   counter.value = 2
-	//   expect(double.value).toBe(2)
-	//   expect(other.value).toBe(3)
+		counter.value = 2
+		expect(double.value).toBe(2)
+		expect(other.value).toBe(3)
 
-	//   await nextTick()
-	//   await nextTick()
+		await nextTick()
+		await nextTick()
 
-	//   expect(double.value).toBe(4)
-	//   expect(other.value).toBe(5)
-	// })
+		expect(double.value).toBe(4)
+		expect(other.value).toBe(5)
+	})
 
-	// it('cancel is called', async () => {
-	//   const onCancel = vi.fn()
-	//   const evaluating = ref(false)
+	it('cancel is called', async () => {
+		const onCancel = vi.fn()
+		const evaluating = ref(false)
 
-	//   const data = ref('initial')
-	//   const uppercase = computedAsync((cancel) => {
-	//     cancel(onCancel)
+		const data = ref('initial')
+		const uppercase = computedAsync(
+			(cancel) => {
+				cancel(onCancel)
 
-	//     const uppercased = data.value.toUpperCase()
+				const uppercased = data.value.toUpperCase()
 
-	//     return new Promise((resolve) => {
-	//       setTimeout(resolve.bind(null, uppercased), 5)
-	//     })
-	//   }, '', evaluating)
+				return new Promise((resolve) => {
+					setTimeout(resolve.bind(null, uppercased), 5)
+				})
+			},
+			'',
+			evaluating
+		)
 
-	//   expect(uppercase.value).toBe('')
+		expect(uppercase.value).toBe('')
 
-	//   await promiseTimeout(10)
+		await promiseTimeout(10)
 
-	//   expect(uppercase.value).toBe('INITIAL')
+		expect(uppercase.value).toBe('INITIAL')
 
-	//   data.value = 'to be cancelled'
-	//   await nextTick()
-	//   await nextTick()
-	//   expect(onCancel).toBeCalledTimes(0)
+		data.value = 'to be cancelled'
+		await nextTick()
+		await nextTick()
+		expect(onCancel).toBeCalledTimes(0)
 
-	//   data.value = 'final'
-	//   await nextTick()
-	//   await nextTick()
-	//   expect(onCancel).toBeCalledTimes(1)
+		data.value = 'final'
+		await nextTick()
+		await nextTick()
+		expect(onCancel).toBeCalledTimes(1)
 
-	//   await promiseTimeout(10)
+		await promiseTimeout(10)
 
-	//   expect(uppercase.value).toBe('FINAL')
-	// })
+		expect(uppercase.value).toBe('FINAL')
+	})
 
-	// it('cancel is called for lazy', async () => {
-	//   const onCancel = vi.fn()
+	it('cancel is called for lazy', async () => {
+		const onCancel = vi.fn()
 
-	//   const data = ref('initial')
-	//   const uppercase = computedAsync((cancel) => {
-	//     cancel(() => onCancel())
+		const data = ref('initial')
+		const uppercase = computedAsync(
+			(cancel) => {
+				cancel(() => onCancel())
 
-	//     const uppercased = data.value.toUpperCase()
+				const uppercased = data.value.toUpperCase()
 
-	//     return new Promise((resolve) => {
-	//       setTimeout(resolve.bind(null, uppercased), 5)
-	//     })
-	//   }, '', { lazy: true })
+				return new Promise((resolve) => {
+					setTimeout(resolve.bind(null, uppercased), 5)
+				})
+			},
+			'',
+			{ lazy: true }
+		)
 
-	//   expect(uppercase.value).toBe('')
+		expect(uppercase.value).toBe('')
 
-	//   await promiseTimeout(10)
+		await promiseTimeout(10)
 
-	//   expect(uppercase.value).toBe('INITIAL')
+		expect(uppercase.value).toBe('INITIAL')
 
-	//   data.value = 'to be cancelled'
-	//   await nextTick()
-	//   await nextTick()
-	//   expect(onCancel).toBeCalledTimes(0)
+		data.value = 'to be cancelled'
+		await nextTick()
+		await nextTick()
+		expect(onCancel).toBeCalledTimes(0)
 
-	//   data.value = 'final'
-	//   await nextTick()
-	//   await nextTick()
-	//   expect(onCancel).toBeCalledTimes(1)
+		data.value = 'final'
+		await nextTick()
+		await nextTick()
+		expect(onCancel).toBeCalledTimes(1)
 
-	//   await promiseTimeout(10)
+		await promiseTimeout(10)
 
-	//   expect(uppercase.value).toBe('FINAL')
-	// })
+		expect(uppercase.value).toBe('FINAL')
+	})
 })

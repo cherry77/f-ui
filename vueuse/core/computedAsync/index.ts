@@ -1,18 +1,20 @@
-import { computed, ref, watchEffect, isRef } from 'vue-demi'
-import type { Ref } from 'vue-demi'
-import { noop } from '@vueuse/shared'
+import { ref, watchEffect, computed, Ref, isRef } from 'vue-demi'
+import type { Fn } from '@vueuse/shared'
+
+export type AsyncComputedOnCancel = (cancelCallback: Fn) => void
 
 export interface AsyncComputedOptions {
-	lazy?: boolean // 当 lazy 属性为 false 时，异步计算属性将会被立即执行
+	lazy?: boolean
 	onError?: (e: unknown) => void
-	evaluating?: Ref<boolean> // 用于跟踪异步计算属性的计算状态, 通过使用 evaluating 属性，可以在组件中访问到异步计算属性的计算状态，并根据需要在 UI 中进行相应的显示或处理。
+	evaluating?: Ref<boolean>
 }
 
-export const computedAsync = (
-	fn: Function,
-	initialState?,
-	optionsOrRef?: Ref<boolean> | AsyncComputedOptions
-) => {
+export function computedAsync<T>(
+	evaluationCallback: (onCancel: AsyncComputedOnCancel) => Promise<T> | T,
+	initialState?: T,
+	optionsOrRef?: AsyncComputedOptions | Ref<boolean>
+) {
+	const current = ref(initialState)
 	let options: AsyncComputedOptions
 
 	if (isRef(optionsOrRef)) {
@@ -21,37 +23,37 @@ export const computedAsync = (
 		options = optionsOrRef || {}
 	}
 
-	const { onError = noop, lazy = false, evaluating = undefined } = options
-
-	const current = ref(initialState)
+	const { lazy, onError, evaluating } = options
 	const started = ref(!lazy)
+
 	let counter = 0
 
-	watchEffect(async () => {
+	watchEffect(async (onInvalidate) => {
 		if (!started.value) return
 
 		counter++
 		const counterAtBeginning = counter
-		console.log(counter, counterAtBeginning)
-		// if (evaluating) {
-		// 	Promise.resolve().then(() => {
-		// 		evaluating.value = true
-		// 	})
-		// }
-
+		let hasFinished = false
 		try {
-			if (evaluating) {
-				evaluating.value = true
-			}
-			const result = await fn()
+			if (evaluating) evaluating.value = true
 
-			if (counterAtBeginning === counter) current.value = result
+			const result = await evaluationCallback((cancelCallback) => {
+				onInvalidate(() => {
+					if (evaluating) evaluating.value = false
+
+					if (!hasFinished) cancelCallback()
+				})
+			})
+			if (counterAtBeginning === counter) {
+				current.value = result
+			}
 		} catch (error) {
 			onError && onError(error)
 		} finally {
 			if (evaluating && counterAtBeginning === counter) {
 				evaluating.value = false
 			}
+			hasFinished = true
 		}
 	})
 
