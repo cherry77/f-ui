@@ -118,7 +118,6 @@ describe('computedAsync', () => {
 		)
 
 		await nextTick()
-
 		expect(double.value).toBeUndefined()
 		expect(evaluating.value).toBe(true)
 		expect(resolutions).toHaveLength(1)

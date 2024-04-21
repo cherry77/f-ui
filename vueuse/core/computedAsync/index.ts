@@ -35,7 +35,11 @@ export function computedAsync<T>(
 		const counterAtBeginning = counter
 		let hasFinished = false
 		try {
-			if (evaluating) evaluating.value = true
+			if (evaluating) {
+				Promise.resolve().then(() => {
+					evaluating.value = true
+				})
+			}
 
 			const result = await evaluationCallback((cancelCallback) => {
 				onInvalidate(() => {
