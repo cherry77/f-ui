@@ -1,34 +1,40 @@
 {
-  "name": "f-ui",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "pnpm run -C play dev",
-    "build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build",
-    "build:vue2": "pnpm run -C packages/vue2 build",
-    "storybook": "pnpm run -C storybook start",
-    "test": "vitest"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@antfu/eslint-config": "^2.15.0",
-    "@types/node": "^18.7.5",
-    "eslint": "^9.0.0",
-    "nx": "17.2.8",
-    "sass": "^1.55.0",
-    "sass-loader": "^13.1.0",
-    "typescript": "^3.9.10",
-    "vite": "^3.0.7",
-    "vitest": "^1.5.0"
-  },
-  "dependencies": {
-    "@types/lodash-es": "^4.17.6",
-    "@vueuse/core": "^10.9.0",
-    "@vueuse/shared": "^10.9.0",
-    "lodash-es": "^4.17.21",
-    "vue-demi": "^0.14.7"
-  }
+	"name": "f-ui",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "pnpm run -C play dev",
+		"build": "pnpm run -C packages/vue2 build && pnpm run -C packages/vue3 build",
+		"build:vue2": "pnpm run -C packages/vue2 build",
+		"storybook": "pnpm run -C storybook start",
+		"test": "vitest"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"@antfu/eslint-config": "^2.15.0",
+		"@types/node": "^18.7.5",
+		"eslint": "^9.0.0",
+		"sass": "^1.55.0",
+		"sass-loader": "^13.1.0",
+		"typescript": "^3.9.10",
+		"vite": "^3.0.7",
+		"vitest": "^1.5.0"
+	},
+	"dependencies": {
+		"@types/lodash-es": "^4.17.6",
+		"@vueuse/core": "^10.9.0",
+		"@vueuse/shared": "^10.9.0",
+		"lodash-es": "^4.17.21",
+		"vue-demi": "^0.14.7",
+		"@f-ui/components": "workspace:*"
+	},
+	"eslintConfig": {
+		"extends": [
+			"plugin:storybook/recommended",
+			"plugin:storybook/recommended"
+		]
+	}
 }
